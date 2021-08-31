@@ -6,7 +6,7 @@ var moment = require('moment');
 const Card = props => {
 	const rsvpdate = moment(props.detail.rsvpdeadline).format('DD MMM, YYYY');
 	const edate = moment(props.detail.eventdate).format('DD MMM, YYYY');
-	let imagename = '/img/';
+	let imagename = 'public/img/';
 	let iname = imagename.concat(props.detail.eventtype, '.jpeg');
 	if (props.detail.eventtype) {
 		return (

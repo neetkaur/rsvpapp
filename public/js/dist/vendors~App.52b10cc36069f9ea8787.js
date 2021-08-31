@@ -1,109 +1,5 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["vendors~App"],{
 
-/***/ "../../node_modules/emailjs-com/es/api/sendPost.js":
-/*!*************************************************************************************************!*\
-  !*** /Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/api/sendPost.js ***!
-  \*************************************************************************************************/
-/*! exports provided: sendPost */
-/*! exports used: sendPost */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return sendPost; });\n/* harmony import */ var _models_EmailJSResponseStatus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../models/EmailJSResponseStatus */ \"../../node_modules/emailjs-com/es/models/EmailJSResponseStatus.js\");\n/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/store */ \"../../node_modules/emailjs-com/es/store/store.js\");\n\n\nconst sendPost = (url, data, headers = {}) => {\n    return new Promise((resolve, reject) => {\n        const xhr = new XMLHttpRequest();\n        xhr.addEventListener('load', ({ target }) => {\n            const responseStatus = new _models_EmailJSResponseStatus__WEBPACK_IMPORTED_MODULE_0__[/* EmailJSResponseStatus */ \"a\"](target);\n            if (responseStatus.status === 200 || responseStatus.text === 'OK') {\n                resolve(responseStatus);\n            }\n            else {\n                reject(responseStatus);\n            }\n        });\n        xhr.addEventListener('error', ({ target }) => {\n            reject(new _models_EmailJSResponseStatus__WEBPACK_IMPORTED_MODULE_0__[/* EmailJSResponseStatus */ \"a\"](target));\n        });\n        xhr.open('POST', _store_store__WEBPACK_IMPORTED_MODULE_1__[/* store */ \"a\"]._origin + url, true);\n        Object.keys(headers).forEach((key) => {\n            xhr.setRequestHeader(key, headers[key]);\n        });\n        xhr.send(data);\n    });\n};\n\n\n//# sourceURL=webpack:////Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/api/sendPost.js?");
-
-/***/ }),
-
-/***/ "../../node_modules/emailjs-com/es/index.js":
-/*!******************************************************************************************!*\
-  !*** /Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/index.js ***!
-  \******************************************************************************************/
-/*! exports provided: init, send, sendForm, default */
-/*! exports used: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("/* harmony import */ var _methods_init_init__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./methods/init/init */ \"../../node_modules/emailjs-com/es/methods/init/init.js\");\n/* harmony import */ var _methods_send_send__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./methods/send/send */ \"../../node_modules/emailjs-com/es/methods/send/send.js\");\n/* harmony import */ var _methods_sendForm_sendForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./methods/sendForm/sendForm */ \"../../node_modules/emailjs-com/es/methods/sendForm/sendForm.js\");\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"a\"] = ({\n    init: _methods_init_init__WEBPACK_IMPORTED_MODULE_0__[/* init */ \"a\"],\n    send: _methods_send_send__WEBPACK_IMPORTED_MODULE_1__[/* send */ \"a\"],\n    sendForm: _methods_sendForm_sendForm__WEBPACK_IMPORTED_MODULE_2__[/* sendForm */ \"a\"],\n});\n\n\n//# sourceURL=webpack:////Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/index.js?");
-
-/***/ }),
-
-/***/ "../../node_modules/emailjs-com/es/methods/init/init.js":
-/*!******************************************************************************************************!*\
-  !*** /Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/methods/init/init.js ***!
-  \******************************************************************************************************/
-/*! exports provided: init */
-/*! exports used: init */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return init; });\n/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/store */ \"../../node_modules/emailjs-com/es/store/store.js\");\n\n/**\n * Initiation\n * @param {string} userID - set the EmailJS user ID\n * @param {string} origin - set the EmailJS origin\n */\nconst init = (userID, origin = 'https://api.emailjs.com') => {\n    _store_store__WEBPACK_IMPORTED_MODULE_0__[/* store */ \"a\"]._userID = userID;\n    _store_store__WEBPACK_IMPORTED_MODULE_0__[/* store */ \"a\"]._origin = origin;\n};\n\n\n//# sourceURL=webpack:////Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/methods/init/init.js?");
-
-/***/ }),
-
-/***/ "../../node_modules/emailjs-com/es/methods/send/send.js":
-/*!******************************************************************************************************!*\
-  !*** /Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/methods/send/send.js ***!
-  \******************************************************************************************************/
-/*! exports provided: send */
-/*! exports used: send */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return send; });\n/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/store */ \"../../node_modules/emailjs-com/es/store/store.js\");\n/* harmony import */ var _utils_validateParams__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/validateParams */ \"../../node_modules/emailjs-com/es/utils/validateParams.js\");\n/* harmony import */ var _api_sendPost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/sendPost */ \"../../node_modules/emailjs-com/es/api/sendPost.js\");\n\n\n\n/**\n * Send a template to the specific EmailJS service\n * @param {string} serviceID - the EmailJS service ID\n * @param {string} templateID - the EmailJS template ID\n * @param {object} templatePrams - the template params, what will be set to the EmailJS template\n * @param {string} userID - the EmailJS user ID\n * @returns {Promise<EmailJSResponseStatus>}\n */\nconst send = (serviceID, templateID, templatePrams, userID) => {\n    const uID = userID || _store_store__WEBPACK_IMPORTED_MODULE_0__[/* store */ \"a\"]._userID;\n    Object(_utils_validateParams__WEBPACK_IMPORTED_MODULE_1__[/* validateParams */ \"a\"])(uID, serviceID, templateID);\n    const params = {\n        lib_version: '3.2.0',\n        user_id: uID,\n        service_id: serviceID,\n        template_id: templateID,\n        template_params: templatePrams,\n    };\n    return Object(_api_sendPost__WEBPACK_IMPORTED_MODULE_2__[/* sendPost */ \"a\"])('/api/v1.0/email/send', JSON.stringify(params), {\n        'Content-type': 'application/json',\n    });\n};\n\n\n//# sourceURL=webpack:////Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/methods/send/send.js?");
-
-/***/ }),
-
-/***/ "../../node_modules/emailjs-com/es/methods/sendForm/sendForm.js":
-/*!**************************************************************************************************************!*\
-  !*** /Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/methods/sendForm/sendForm.js ***!
-  \**************************************************************************************************************/
-/*! exports provided: sendForm */
-/*! exports used: sendForm */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return sendForm; });\n/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/store */ \"../../node_modules/emailjs-com/es/store/store.js\");\n/* harmony import */ var _utils_validateParams__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/validateParams */ \"../../node_modules/emailjs-com/es/utils/validateParams.js\");\n/* harmony import */ var _api_sendPost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/sendPost */ \"../../node_modules/emailjs-com/es/api/sendPost.js\");\n\n\n\nconst findHTMLForm = (form) => {\n    let currentForm;\n    if (typeof form === 'string') {\n        currentForm = document.querySelector(form);\n    }\n    else {\n        currentForm = form;\n    }\n    if (!currentForm || currentForm.nodeName !== 'FORM') {\n        throw 'The 3rd parameter is expected to be the HTML form element or the style selector of form';\n    }\n    return currentForm;\n};\n/**\n * Send a form the specific EmailJS service\n * @param {string} serviceID - the EmailJS service ID\n * @param {string} templateID - the EmailJS template ID\n * @param {string | HTMLFormElement} form - the form element or selector\n * @param {string} userID - the EmailJS user ID\n * @returns {Promise<EmailJSResponseStatus>}\n */\nconst sendForm = (serviceID, templateID, form, userID) => {\n    const uID = userID || _store_store__WEBPACK_IMPORTED_MODULE_0__[/* store */ \"a\"]._userID;\n    const currentForm = findHTMLForm(form);\n    Object(_utils_validateParams__WEBPACK_IMPORTED_MODULE_1__[/* validateParams */ \"a\"])(uID, serviceID, templateID);\n    const formData = new FormData(currentForm);\n    formData.append('lib_version', '3.2.0');\n    formData.append('service_id', serviceID);\n    formData.append('template_id', templateID);\n    formData.append('user_id', uID);\n    return Object(_api_sendPost__WEBPACK_IMPORTED_MODULE_2__[/* sendPost */ \"a\"])('/api/v1.0/email/send-form', formData);\n};\n\n\n//# sourceURL=webpack:////Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/methods/sendForm/sendForm.js?");
-
-/***/ }),
-
-/***/ "../../node_modules/emailjs-com/es/models/EmailJSResponseStatus.js":
-/*!*****************************************************************************************************************!*\
-  !*** /Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/models/EmailJSResponseStatus.js ***!
-  \*****************************************************************************************************************/
-/*! exports provided: EmailJSResponseStatus */
-/*! exports used: EmailJSResponseStatus */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return EmailJSResponseStatus; });\nclass EmailJSResponseStatus {\n    constructor(httpResponse) {\n        this.status = httpResponse.status;\n        this.text = httpResponse.responseText;\n    }\n}\n\n\n//# sourceURL=webpack:////Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/models/EmailJSResponseStatus.js?");
-
-/***/ }),
-
-/***/ "../../node_modules/emailjs-com/es/store/store.js":
-/*!************************************************************************************************!*\
-  !*** /Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/store/store.js ***!
-  \************************************************************************************************/
-/*! exports provided: store */
-/*! exports used: store */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return store; });\nconst store = {\n    _origin: 'https://api.emailjs.com',\n};\n\n\n//# sourceURL=webpack:////Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/store/store.js?");
-
-/***/ }),
-
-/***/ "../../node_modules/emailjs-com/es/utils/validateParams.js":
-/*!*********************************************************************************************************!*\
-  !*** /Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/utils/validateParams.js ***!
-  \*********************************************************************************************************/
-/*! exports provided: validateParams */
-/*! exports used: validateParams */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return validateParams; });\nconst validateParams = (userID, serviceID, templateID) => {\n    if (!userID) {\n        throw 'The user ID is required. Visit https://dashboard.emailjs.com/admin/integration';\n    }\n    if (!serviceID) {\n        throw 'The service ID is required. Visit https://dashboard.emailjs.com/admin';\n    }\n    if (!templateID) {\n        throw 'The template ID is required. Visit https://dashboard.emailjs.com/admin/templates';\n    }\n    return true;\n};\n\n\n//# sourceURL=webpack:////Users/neetkhangura/Desktop/seir-flex-hypatia/node_modules/emailjs-com/es/utils/validateParams.js?");
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime/helpers/esm/extends.js":
 /*!************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/esm/extends.js ***!
@@ -164,6 +60,110 @@ eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, 
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("\nvar content = __webpack_require__(/*! !../../mini-css-extract-plugin/dist/loader.js!../../css-loader!../../sass-loader/dist/cjs.js!../../postcss-loader/src!./bootstrap.scss */ \"./node_modules/mini-css-extract-plugin/dist/loader.js!./node_modules/css-loader/index.js!./node_modules/sass-loader/dist/cjs.js!./node_modules/postcss-loader/src/index.js!./node_modules/bootstrap/scss/bootstrap.scss\");\n\nif(typeof content === 'string') content = [[module.i, content, '']];\n\nvar transform;\nvar insertInto;\n\n\n\nvar options = {\"hmr\":true}\n\noptions.transform = transform\noptions.insertInto = undefined;\n\nvar update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ \"./node_modules/style-loader/lib/addStyles.js\")(content, options);\n\nif(content.locals) module.exports = content.locals;\n\nif(false) {}\n\n//# sourceURL=webpack:///./node_modules/bootstrap/scss/bootstrap.scss?");
+
+/***/ }),
+
+/***/ "./node_modules/emailjs-com/es/api/sendPost.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/emailjs-com/es/api/sendPost.js ***!
+  \*****************************************************/
+/*! exports provided: sendPost */
+/*! exports used: sendPost */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return sendPost; });\n/* harmony import */ var _models_EmailJSResponseStatus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../models/EmailJSResponseStatus */ \"./node_modules/emailjs-com/es/models/EmailJSResponseStatus.js\");\n/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/store */ \"./node_modules/emailjs-com/es/store/store.js\");\n\n\nconst sendPost = (url, data, headers = {}) => {\n    return new Promise((resolve, reject) => {\n        const xhr = new XMLHttpRequest();\n        xhr.addEventListener('load', ({ target }) => {\n            const responseStatus = new _models_EmailJSResponseStatus__WEBPACK_IMPORTED_MODULE_0__[/* EmailJSResponseStatus */ \"a\"](target);\n            if (responseStatus.status === 200 || responseStatus.text === 'OK') {\n                resolve(responseStatus);\n            }\n            else {\n                reject(responseStatus);\n            }\n        });\n        xhr.addEventListener('error', ({ target }) => {\n            reject(new _models_EmailJSResponseStatus__WEBPACK_IMPORTED_MODULE_0__[/* EmailJSResponseStatus */ \"a\"](target));\n        });\n        xhr.open('POST', _store_store__WEBPACK_IMPORTED_MODULE_1__[/* store */ \"a\"]._origin + url, true);\n        Object.keys(headers).forEach((key) => {\n            xhr.setRequestHeader(key, headers[key]);\n        });\n        xhr.send(data);\n    });\n};\n\n\n//# sourceURL=webpack:///./node_modules/emailjs-com/es/api/sendPost.js?");
+
+/***/ }),
+
+/***/ "./node_modules/emailjs-com/es/index.js":
+/*!**********************************************!*\
+  !*** ./node_modules/emailjs-com/es/index.js ***!
+  \**********************************************/
+/*! exports provided: init, send, sendForm, default */
+/*! exports used: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("/* harmony import */ var _methods_init_init__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./methods/init/init */ \"./node_modules/emailjs-com/es/methods/init/init.js\");\n/* harmony import */ var _methods_send_send__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./methods/send/send */ \"./node_modules/emailjs-com/es/methods/send/send.js\");\n/* harmony import */ var _methods_sendForm_sendForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./methods/sendForm/sendForm */ \"./node_modules/emailjs-com/es/methods/sendForm/sendForm.js\");\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"a\"] = ({\n    init: _methods_init_init__WEBPACK_IMPORTED_MODULE_0__[/* init */ \"a\"],\n    send: _methods_send_send__WEBPACK_IMPORTED_MODULE_1__[/* send */ \"a\"],\n    sendForm: _methods_sendForm_sendForm__WEBPACK_IMPORTED_MODULE_2__[/* sendForm */ \"a\"],\n});\n\n\n//# sourceURL=webpack:///./node_modules/emailjs-com/es/index.js?");
+
+/***/ }),
+
+/***/ "./node_modules/emailjs-com/es/methods/init/init.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/emailjs-com/es/methods/init/init.js ***!
+  \**********************************************************/
+/*! exports provided: init */
+/*! exports used: init */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return init; });\n/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/store */ \"./node_modules/emailjs-com/es/store/store.js\");\n\n/**\n * Initiation\n * @param {string} userID - set the EmailJS user ID\n * @param {string} origin - set the EmailJS origin\n */\nconst init = (userID, origin = 'https://api.emailjs.com') => {\n    _store_store__WEBPACK_IMPORTED_MODULE_0__[/* store */ \"a\"]._userID = userID;\n    _store_store__WEBPACK_IMPORTED_MODULE_0__[/* store */ \"a\"]._origin = origin;\n};\n\n\n//# sourceURL=webpack:///./node_modules/emailjs-com/es/methods/init/init.js?");
+
+/***/ }),
+
+/***/ "./node_modules/emailjs-com/es/methods/send/send.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/emailjs-com/es/methods/send/send.js ***!
+  \**********************************************************/
+/*! exports provided: send */
+/*! exports used: send */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return send; });\n/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/store */ \"./node_modules/emailjs-com/es/store/store.js\");\n/* harmony import */ var _utils_validateParams__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/validateParams */ \"./node_modules/emailjs-com/es/utils/validateParams.js\");\n/* harmony import */ var _api_sendPost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/sendPost */ \"./node_modules/emailjs-com/es/api/sendPost.js\");\n\n\n\n/**\n * Send a template to the specific EmailJS service\n * @param {string} serviceID - the EmailJS service ID\n * @param {string} templateID - the EmailJS template ID\n * @param {object} templatePrams - the template params, what will be set to the EmailJS template\n * @param {string} userID - the EmailJS user ID\n * @returns {Promise<EmailJSResponseStatus>}\n */\nconst send = (serviceID, templateID, templatePrams, userID) => {\n    const uID = userID || _store_store__WEBPACK_IMPORTED_MODULE_0__[/* store */ \"a\"]._userID;\n    Object(_utils_validateParams__WEBPACK_IMPORTED_MODULE_1__[/* validateParams */ \"a\"])(uID, serviceID, templateID);\n    const params = {\n        lib_version: '3.2.0',\n        user_id: uID,\n        service_id: serviceID,\n        template_id: templateID,\n        template_params: templatePrams,\n    };\n    return Object(_api_sendPost__WEBPACK_IMPORTED_MODULE_2__[/* sendPost */ \"a\"])('/api/v1.0/email/send', JSON.stringify(params), {\n        'Content-type': 'application/json',\n    });\n};\n\n\n//# sourceURL=webpack:///./node_modules/emailjs-com/es/methods/send/send.js?");
+
+/***/ }),
+
+/***/ "./node_modules/emailjs-com/es/methods/sendForm/sendForm.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/emailjs-com/es/methods/sendForm/sendForm.js ***!
+  \******************************************************************/
+/*! exports provided: sendForm */
+/*! exports used: sendForm */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return sendForm; });\n/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/store */ \"./node_modules/emailjs-com/es/store/store.js\");\n/* harmony import */ var _utils_validateParams__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/validateParams */ \"./node_modules/emailjs-com/es/utils/validateParams.js\");\n/* harmony import */ var _api_sendPost__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../api/sendPost */ \"./node_modules/emailjs-com/es/api/sendPost.js\");\n\n\n\nconst findHTMLForm = (form) => {\n    let currentForm;\n    if (typeof form === 'string') {\n        currentForm = document.querySelector(form);\n    }\n    else {\n        currentForm = form;\n    }\n    if (!currentForm || currentForm.nodeName !== 'FORM') {\n        throw 'The 3rd parameter is expected to be the HTML form element or the style selector of form';\n    }\n    return currentForm;\n};\n/**\n * Send a form the specific EmailJS service\n * @param {string} serviceID - the EmailJS service ID\n * @param {string} templateID - the EmailJS template ID\n * @param {string | HTMLFormElement} form - the form element or selector\n * @param {string} userID - the EmailJS user ID\n * @returns {Promise<EmailJSResponseStatus>}\n */\nconst sendForm = (serviceID, templateID, form, userID) => {\n    const uID = userID || _store_store__WEBPACK_IMPORTED_MODULE_0__[/* store */ \"a\"]._userID;\n    const currentForm = findHTMLForm(form);\n    Object(_utils_validateParams__WEBPACK_IMPORTED_MODULE_1__[/* validateParams */ \"a\"])(uID, serviceID, templateID);\n    const formData = new FormData(currentForm);\n    formData.append('lib_version', '3.2.0');\n    formData.append('service_id', serviceID);\n    formData.append('template_id', templateID);\n    formData.append('user_id', uID);\n    return Object(_api_sendPost__WEBPACK_IMPORTED_MODULE_2__[/* sendPost */ \"a\"])('/api/v1.0/email/send-form', formData);\n};\n\n\n//# sourceURL=webpack:///./node_modules/emailjs-com/es/methods/sendForm/sendForm.js?");
+
+/***/ }),
+
+/***/ "./node_modules/emailjs-com/es/models/EmailJSResponseStatus.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/emailjs-com/es/models/EmailJSResponseStatus.js ***!
+  \*********************************************************************/
+/*! exports provided: EmailJSResponseStatus */
+/*! exports used: EmailJSResponseStatus */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return EmailJSResponseStatus; });\nclass EmailJSResponseStatus {\n    constructor(httpResponse) {\n        this.status = httpResponse.status;\n        this.text = httpResponse.responseText;\n    }\n}\n\n\n//# sourceURL=webpack:///./node_modules/emailjs-com/es/models/EmailJSResponseStatus.js?");
+
+/***/ }),
+
+/***/ "./node_modules/emailjs-com/es/store/store.js":
+/*!****************************************************!*\
+  !*** ./node_modules/emailjs-com/es/store/store.js ***!
+  \****************************************************/
+/*! exports provided: store */
+/*! exports used: store */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return store; });\nconst store = {\n    _origin: 'https://api.emailjs.com',\n};\n\n\n//# sourceURL=webpack:///./node_modules/emailjs-com/es/store/store.js?");
+
+/***/ }),
+
+/***/ "./node_modules/emailjs-com/es/utils/validateParams.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/emailjs-com/es/utils/validateParams.js ***!
+  \*************************************************************/
+/*! exports provided: validateParams */
+/*! exports used: validateParams */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return validateParams; });\nconst validateParams = (userID, serviceID, templateID) => {\n    if (!userID) {\n        throw 'The user ID is required. Visit https://dashboard.emailjs.com/admin/integration';\n    }\n    if (!serviceID) {\n        throw 'The service ID is required. Visit https://dashboard.emailjs.com/admin';\n    }\n    if (!templateID) {\n        throw 'The template ID is required. Visit https://dashboard.emailjs.com/admin/templates';\n    }\n    return true;\n};\n\n\n//# sourceURL=webpack:///./node_modules/emailjs-com/es/utils/validateParams.js?");
 
 /***/ }),
 
