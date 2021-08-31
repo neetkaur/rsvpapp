@@ -12,7 +12,7 @@ const GuestList = props => {
 		message: ''
 	};
 	let counter = 0;
-	const guesturl = 'http://localhost:3000/guest/' + props.data._id;
+	const guesturl = 'https://rsvpneet.herokuapp.com/#/guest/' + props.data._id;
 	console.log(props.data._id);
 	console.log(guesturl);
 
