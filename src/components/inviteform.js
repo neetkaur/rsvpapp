@@ -42,7 +42,7 @@ const InviteForm = props => {
 						<option value="Graduation">Graduation</option>
 						<option value="Lunch">Lunch</option>
 						<option value="Cocktail">Cocktail</option>
-						<option value="BBQ">BBQ </option>
+						<option value="bbq">BBQ </option>
 						<option value="Wedding">Wedding Dinner</option>
 					</select>
 				</div>
