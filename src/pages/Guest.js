@@ -27,16 +27,13 @@ const Guest = props => {
 	const handleGuestEmail = e => {
 		setGuestEmail({ ...guestEmail, [e.target.id]: e.target.value });
 	};
-	const rsvpReject = () => {
-		setMessage('No Problem, See you next time !!');
-		byeByeMessage();
-	};
 
 	const fShowForm = () => {
 		setShowButton(false);
 		setShowForm(true);
 	};
 	const byeByeMessage = () => {
+		console.log(message);
 		setShowButton(false);
 		setShowForm(false);
 		setShowMsg(true);
@@ -48,6 +45,25 @@ const Guest = props => {
 				},
 				body: JSON.stringify({ ...guestEmail, message: message })
 			});
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const rsvpReject = async () => {
+		const temp = 0;
+		try {
+			const response = await fetch(`/api/rsvp/guest`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ howmany: temp, ...guestEmail })
+			});
+			const data = await response.json();
+			if (data) {
+				setMessage('No Problem , See you next time !!');
+			}
 		} catch (error) {
 			console.error(error);
 		}

@@ -188,7 +188,7 @@ const GuestList = props => {
 											{each.responsemessage === 'Thanks , See you soon !!'
 												? 'Accepted'
 												: each.responsemessage ===
-												  'No Problem, See you next time !!'
+												  'No Problem , See you next time !!'
 												? 'Declined'
 												: 'No Response'}
 										</td>
