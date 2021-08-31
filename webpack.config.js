@@ -8,8 +8,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = env => {
 	return {
 		entry: {
-			App: './src/index.js',
-			main: './src/main.js'
+			App: './src/index.js'
 		},
 		output: {
 			path: path.resolve(__dirname, 'public/js/dist'),
@@ -31,7 +30,18 @@ module.exports = env => {
 						'sass-loader',
 						'postcss-loader'
 					]
-				}
+				},
+				{
+	test: /\.(png|jpg|gif)$/i,
+	use: [
+		{
+			loader: 'url-loader',
+			options: {
+				limit: 8192
+			}
+		}
+	]
+}
 			]
 		},
 		plugins: [

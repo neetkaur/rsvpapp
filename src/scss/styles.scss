@@ -1,30 +1,158 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700");
-@import "reset";
-@import "grid";
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
 
 body {
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .NavBar {
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
+
   width: 100%;
   background-color: #f0f0f0;
 }
 
-.HomePage {
+.link{
+  font: white;
+}
+
+.inviteform{
+  background-color: #E8DED1;
+  height: 600px;
+  margin-left: 20px;
+  margin-right: 50px;
+  padding-left:20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  font-size: 12px;
+  margin-top: 20px;
+  width: 250px;
+}
+.invite{
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: center;
+  margin-top: 50px;
+  text-align: center
+}
+
+.host{
+  background-color:#E8DED1;
+  width: 500px;
+  height: 600px;
+  margin: auto;
+  margin-top: 20px;
+  padding-left:50px;
+  padding-right: 50px;
+  font-size: 12px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+
+.btn{
+  margin: 10px;
+}
+p{
+  font-size: 14px;
+}
+.flexcont{
+  display: flex;
+  flex-direction: row;
+}
+.flexform{
+  display:flex;
+  justify-content: space-around;
+  font-size: 12px;
+  width: 900px;
+  margin: auto;
+  margin-top: 20px;
+  padding-top: 10px;
+  h3{
+    font-size: 16px;
+  }
+  p{
+    font-size: 12px;
+  }
+}
+
+.guestlist{
+  font-size: 14;
+  flex-basis:  35%;
+}
+.guestlistdb{
+  padding-left: 50px;
+  flex-basis:  65%;
+  border-left: 4px solid #E8DED1
+
 
 }
 
-.AboutPage {
+.graduation{
+  background-color:#E8DED1;
+  height: 580px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left:10px;
+  padding-right: 10px;
+  font-size: 12px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border: solid;
+  width: 500px;
+  align-items: center;
+  h3{
+    font-family: fantasy;
+    font-size: 26px;
+    font-weight: bolder;
+
+  }
+  p{
+    font-family: fantasy;
+    font-size: 15px;
+    font-weight:normal;
+  }
 
 }
-
-.ContactPage{
-
+.sendinvitebutton{
+  margin-top: 40px;
+  margin-left: 400px
 }
 
-.AppPage {
+.show {
+  visibility: visible;
+}
 
+.noShow {
+  visibility: hidden;
+}
+
+.guestpage{
+margin: auto;
+width: 500px;
+}
+
+.guestview{
+  padding-top: 10px;
+  font-size: 10px;
+  padding-right: 10px;
+}
+
+.buttonGuestList{
+  padding-left: 20px;
+    background-color:#E8DED1;
+    display:flex;
+    justify-content: space-between;
+    font-size: 12px;
+    width: 900px;
+    height: 50px;
+    margin: auto;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-right: 10px;
 }
