@@ -7,7 +7,8 @@ const Card = props => {
 	const rsvpdate = moment(props.detail.rsvpdeadline).format('DD MMM, YYYY');
 	const edate = moment(props.detail.eventdate).format('DD MMM, YYYY');
 	let imagename = '/img/';
-	let iname = imagename.concat(props.detail.eventtype, '.jpeg');
+	let iname = imagename.concat(props.detail.eventtype, '.jpeg').toLowerCase();
+	console.log(iname);
 	if (props.detail.eventtype) {
 		return (
 			<div className="d-flex flex-column justify-content-center graduation">
