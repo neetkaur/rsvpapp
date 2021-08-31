@@ -1,3 +1,5 @@
+require('dotenv').config()
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
@@ -8,7 +10,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = env => {
 	return {
 		entry: {
-			App: './src/index.js'
+			App: './src/index.js',
 		},
 		output: {
 			path: path.resolve(__dirname, 'public/js/dist'),
@@ -30,21 +32,13 @@ module.exports = env => {
 						'sass-loader',
 						'postcss-loader'
 					]
-				},
-				{
-	test: /\.(png|jpg|gif)$/i,
-	use: [
-		{
-			loader: 'url-loader',
-			options: {
-				limit: 8192
-			}
-		}
-	]
-}
+				}
 			]
 		},
 		plugins: [
+			new webpack.DefinePlugin({
+      "process.env.API": JSON.stringify(process.env.API)
+    	}),
 			new CleanWebpackPlugin(),
 			new MiniCssExtractPlugin({
 				filename: 'style.[contenthash].css' // 'style.[contenthash].css' put this if you want to get hashed files to cache bust
